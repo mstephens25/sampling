@@ -1,0 +1,43 @@
+---
+title: "sampling.Rmd"
+author: "Mark Stephens"
+date: "3/3/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+
+library(tidyverse)
+library(ggplot2)
+library(readxl)
+library(janitor)
+library(gt)
+library(googlesheets4)
+library(fs)
+
+
+
+```
+
+
+```{r}
+
+sheets_deauth()
+
+sheet <- read_sheet("https://docs.google.com/spreadsheets/d/14HmwN2cEVAJHupuehCuLdwG9BXtR3COrxDgaaylLhkA/edit#gid=0") %>%
+  clean_names()
+
+sheet %>%
+  arrange(desc(red))
+
+ggplot(sheet, aes(red)) +
+  geom_bar()
+
+
+
+
+
+
+```
